@@ -1,0 +1,9 @@
+body {
+    text-align: center;
+    border: 3px;
+    font-family: sans-serif;
+  }
+#errorMessage{
+    color: red;
+}
+
