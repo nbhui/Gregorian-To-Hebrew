@@ -14,7 +14,7 @@
 <input type="date" id="userInput">
 
 <!-- Button to trigger the conversion -->
-<button onclick="convertToHebrew()">Convert</button>
+<button onclick="convertToHebrew()" class = "button">Convert</button>
 
 <!-- Paragraph to display the converted Hebrew date -->
 <p id="hebrewDate"></p>
@@ -32,20 +32,20 @@
             return; // Stop further execution
         }
 
-        errorMessageElement.textContent = "";
+       errorMessageElement.textContent = "";// Cleans error message if exists
        
-       const year = new Date(gregorianDate).getFullYear();//gets the year from gregorianDate(which is Date type). Its a JS methods provided by DATE object;
+       const year = new Date(gregorianDate).getFullYear();
        const month = new Date(gregorianDate).getMonth()+1;
        const day = new Date(gregorianDate).getDate();
 
-       const url = `https://www.hebcal.com/converter?cfg=json&gy=${year}&gm=${month}&gd=${day}&g2h=1&gs=1&g2h=1`;
+       const url = `https://www.hebcal.com/converter?cfg=json&gy=${year}&gm=${month}&gd=${day}&g2h=1&gs=1`;
        
        fetch(url)
          .then((response) => response.json())//Response is the Promise that comes from the fetch. response.json() 
          //is used to extract the JSON content from the response.
 
          .then((data) => {              //It takes the parsed JSON data as its argument (referred to as data in the arrow function).
-                const hebrewDate = document.getElementById('hebrewDate').textContent = `Hebrew Date:\n ${data.hebrew}`;
+                const hebrewDate = document.getElementById('hebrewDate').textContent = `Hebrew Date: ${data.hebrew}`;
                 //data.hebrew refers to the response.json(). from it I take the hebrew parameter("hebrew":"י״ב בְּסִיוָן תשע״ב").
          })
          .catch(error => {
